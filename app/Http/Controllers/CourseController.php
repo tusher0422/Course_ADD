@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\DB;
 class CourseController extends Controller
 {
    
+    public function index()
+    {
+    $courses = \App\Models\Course::latest()->get();
+    return view('courses.index', compact('courses'));
+    }
+
     public function create()
     {
         return view('courses.create');
@@ -18,12 +24,13 @@ class CourseController extends Controller
 
     public function store(Request $request)
     {
+dd($request->input('modules')[0]);
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
             'category' => 'required|string',
             'modules.*.title' => 'required|string',
-            'modules.*.contents.*.types' => 'required|string|in:text,video,image,link',
+            'modules.*.contents.*.type' => 'required|string|in:text,video,image,link',
             'modules.*.contents.*.value' => 'required|string',
         ]);
 
@@ -51,7 +58,8 @@ class CourseController extends Controller
             DB::rollBack();
             return back()->with('error','Failed to create course: ' . $e->getMessage());
         }
-        
+        return redirect()->route('courses.index')->with('success', 'Course created successfully!');
+
     }
 
     
