@@ -38,7 +38,7 @@ A simple, beginner-friendly Laravel project that allows users to:
 
 
 # Step 1: Clone the repo
-git clone [https://github.com/your-username/laravel-course-system.git](https://github.com/tusher0422/Course_ADD.git)
+git clone [https://github.com/username/Course_ADD.git](https://github.com/tusher0422/Course_ADD.git)
 cd laravel-course-system
 
 # Step 2: Install dependencies
