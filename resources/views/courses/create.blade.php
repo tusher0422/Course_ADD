@@ -28,6 +28,7 @@
     @elseif(session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
+    <a href="{{ route('courses.index') }}" class="btn btn-secondary mb-3">← Back to Courses</a>
 
     <form action="{{ route('courses.store') }}" method="POST">
         @csrf
@@ -59,7 +60,6 @@
     </form>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -68,7 +68,7 @@ let moduleIndex = 0;
 
 $('#add-module-btn').click(function () {
     const moduleHTML = `
-        <div class="module-box">
+        <div class="module-box" data-index="${moduleIndex}">
             <span class="remove-btn" onclick="$(this).closest('.module-box').remove()">×</span>
             <div class="mb-2">
                 <label>Module Title</label>
@@ -84,8 +84,7 @@ $('#add-module-btn').click(function () {
 $(document).on('click', '.add-content-btn', function () {
     const moduleBox = $(this).closest('.module-box');
     const contentsContainer = moduleBox.find('.contents-container');
-
-    const moduleIdx = $('#modules-container .module-box').index(moduleBox);
+    const moduleIdx = moduleBox.data('index');
     const contentCount = contentsContainer.find('.content-box').length;
 
     const contentHTML = `

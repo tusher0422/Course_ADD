@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <title>Course List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .list-group-item {
+        position: relative;
+    }
+    form button.btn-danger {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
 </head>
+
 <body>
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -19,11 +30,19 @@
     @if($courses->count())
         <div class="list-group">
             @foreach($courses as $course)
-                <div class="list-group-item">
-                    <h5>{{ $course->title }}</h5>
-                    <p class="mb-1">{{ $course->description }}</p>
-                    <small class="text-muted">Category: {{ $course->category }}</small>
+                <div class="list-group-item d-flex justify-content-between align-items-start">
+                <div>
+                <h5>{{ $course->title }}</h5>
+                <p>{{ $course->description }}</p>
+                <small class="text-muted">Category: {{ $course->category }}</small>
                 </div>
+                <form action="{{ route('courses.destroy', $course) }}" method="POST" onsubmit="return confirm('Are you sure?')" style="margin-left: auto;">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                </div>
+
             @endforeach
         </div>
     @else

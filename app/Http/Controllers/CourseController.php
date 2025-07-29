@@ -22,9 +22,18 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
+    public function destroy(Course $course)
+    {
+    try {
+        $course->delete();
+        return redirect()->route('courses.index')->with('success', 'Course deleted successfully!');
+    } catch (\Exception $e) {
+        return back()->with('error', 'Failed to delete course: ' . $e->getMessage());
+    }
+    }
+
     public function store(Request $request)
     {
-dd($request->input('modules')[0]);
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -44,7 +53,8 @@ dd($request->input('modules')[0]);
                     'title' => $moduleData['title'],
                 ]);
 
-                foreach ($moduleData['contents'] as $contentData) {
+                foreach ($moduleData['contents'] ?? [] as $contentData)
+                {
                     $module->contents()->create([
                         'type' => $contentData['type'],
                         'value' => $contentData['value'],
@@ -53,13 +63,11 @@ dd($request->input('modules')[0]);
             }
 
             DB::commit();
-            return back()->with('Course created Successfully!');
-            } catch (\Exception $e) {
-            DB::rollBack();
-            return back()->with('error','Failed to create course: ' . $e->getMessage());
-        }
-        return redirect()->route('courses.index')->with('success', 'Course created successfully!');
-
+            return redirect()->route('courses.index')->with('success', 'Course created successfully!');
+        }catch (\Exception $e) {
+        DB::rollBack();
+        return back()->with('error', 'Failed to create course: ' . $e->getMessage());
+    }
     }
 
     
