@@ -57,14 +57,13 @@ php artisan serve
 
 
 # Screnshots of the Project:
-1. Home:<img width="941" height="374" alt="Course_Home" src="https://github.com/user-attachments/assets/b99ef16f-caae-4ab3-85bd-3ff5925a877e" />
+<img width="881" height="246" alt="Course_Home" src="https://github.com/user-attachments/assets/b99ef16f-caae-4ab3-85bd-3ff5925a877e" />
 
-2. Create:<img width="914" height="460" alt="Course_create" src="https://github.com/user-attachments/assets/81748605-d664-49c4-a93b-e36f58095362" />
+<img width="881" height="246" alt="Course_create" src="https://github.com/user-attachments/assets/81748605-d664-49c4-a93b-e36f58095362" />
 
-3. Created:<img width="949" height="396" alt="Course_created" src="https://github.com/user-attachments/assets/2745105a-d6a5-473a-86e8-83775cb0fec5" />
+<img width="881" height="246" alt="Course_created" src="https://github.com/user-attachments/assets/2745105a-d6a5-473a-86e8-83775cb0fec5" />
 
-4. Delete:<img width="881" height="246" alt="Course_deleted" src="https://github.com/user-attachments/assets/2b9dad22-f199-4459-9bd0-5bbcef17be1b" />
-
+<img width="881" height="246" alt="Course_deleted" src="https://github.com/user-attachments/assets/2b9dad22-f199-4459-9bd0-5bbcef17be1b" />
 
 
 ## License
